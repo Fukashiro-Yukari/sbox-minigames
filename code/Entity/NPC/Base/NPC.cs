@@ -62,12 +62,12 @@ public partial class NPC : AnimEntity
 		base.TakeDamage( info );
 
 		if ( SpawnHealth <= 0 ) return;
-		if ( info.Attacker != null && (info.Attacker is MiniGamePlayer || info.Attacker.Owner is MiniGamePlayer) )
+		if ( info.Attacker != null && (info.Attacker is MiniGamesPlayer || info.Attacker.Owner is MiniGamesPlayer) )
 		{
-			MiniGamePlayer attacker = info.Attacker as MiniGamePlayer;
+			MiniGamesPlayer attacker = info.Attacker as MiniGamesPlayer;
 
 			if ( attacker == null )
-				attacker = info.Attacker.Owner as MiniGamePlayer;
+				attacker = info.Attacker.Owner as MiniGamesPlayer;
 
 			// Note - sending this only to the attacker!
 			attacker.DidDamage( To.Single( attacker ), info.Position, info.Damage, Health.LerpInverse( 100, 0 ), Health <= 0 );

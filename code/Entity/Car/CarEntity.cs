@@ -178,7 +178,7 @@ public partial class CarEntity : Prop, IUse
 	{
 		base.OnDestroy();
 
-		if ( driver is MiniGamePlayer player )
+		if ( driver is MiniGamesPlayer player )
 		{
 			RemoveDriver( player );
 		}
@@ -192,7 +192,7 @@ public partial class CarEntity : Prop, IUse
 	[Event.Tick.Server]
 	protected void Tick()
 	{
-		if ( driver is MiniGamePlayer player )
+		if ( driver is MiniGamesPlayer player )
 		{
 			if ( player.LifeState != LifeState.Alive || player.Vehicle != this )
 			{
@@ -212,7 +212,7 @@ public partial class CarEntity : Prop, IUse
 
 			if ( Input.Pressed( InputButton.Use ) )
 			{
-				if ( owner.Pawn is MiniGamePlayer player && !player.IsUseDisabled() )
+				if ( owner.Pawn is MiniGamesPlayer player && !player.IsUseDisabled() )
 				{
 					RemoveDriver( player );
 
@@ -462,7 +462,7 @@ public partial class CarEntity : Prop, IUse
 		OnCarFrame();
 	}
 
-	private void RemoveDriver( MiniGamePlayer player )
+	private void RemoveDriver( MiniGamesPlayer player )
 	{
 		driver = null;
 		timeSinceDriverLeft = 0;
@@ -487,7 +487,7 @@ public partial class CarEntity : Prop, IUse
 
 	public bool OnUse( Entity user )
 	{
-		if ( user is MiniGamePlayer player && player.Vehicle == null && timeSinceDriverLeft > 1.0f )
+		if ( user is MiniGamesPlayer player && player.Vehicle == null && timeSinceDriverLeft > 1.0f )
 		{
 			player.Vehicle = this;
 			player.VehicleController = new CarController();
@@ -525,7 +525,7 @@ public partial class CarEntity : Prop, IUse
 		if ( !body.IsValid() )
 			return;
 
-		if ( other is MiniGamePlayer player && player.Vehicle == null )
+		if ( other is MiniGamesPlayer player && player.Vehicle == null )
 		{
 			var speed = body.Velocity.Length;
 			var forceOrigin = Position + Rotation.Down * Rand.Float( 20, 30 );
@@ -550,7 +550,7 @@ public partial class CarEntity : Prop, IUse
 		if ( !IsServer )
 			return;
 
-		if ( eventData.Entity is MiniGamePlayer player && player.Vehicle != null )
+		if ( eventData.Entity is MiniGamesPlayer player && player.Vehicle != null )
 		{
 			return;
 		}
@@ -577,7 +577,7 @@ public partial class CarEntity : Prop, IUse
 					.WithPosition( eventData.Pos )
 					.WithForce( eventData.PreVelocity ) );
 
-				if ( eventData.Entity.LifeState == LifeState.Dead && eventData.Entity is not MiniGamePlayer )
+				if ( eventData.Entity.LifeState == LifeState.Dead && eventData.Entity is not MiniGamesPlayer )
 				{
 					PhysicsBody.Velocity = eventData.PreVelocity;
 					PhysicsBody.AngularVelocity = eventData.PreAngularVelocity;

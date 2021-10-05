@@ -5,19 +5,19 @@ namespace Round
 {
 	public partial class Active : BaseRound
 	{
-		MiniGame game;
+		MiniGames game;
 
 		public Active()
 		{
 			if ( !Host.IsServer ) return;
 
-			game = Game.Current as MiniGame;
+			game = Game.Current as MiniGames;
 			game.SetRoundTime( MapSettings.Time );
 
-			foreach ( var ply in Entity.All.OfType<MiniGamePlayer>() )
+			foreach ( var ply in Entity.All.OfType<MiniGamesPlayer>() )
 				ply.Freeze( false );
 
-			MiniGame.AddHint( "RoundStart" );
+			MiniGames.AddHint( "RoundStart" );
 		}
 
 		public override void OnTick()
@@ -56,7 +56,7 @@ namespace Round
 			}
 			else if ( MapSettings.TeamType == 1 )
 			{
-				var AlivePlayer = Entity.All.OfType<MiniGamePlayer>().Where( x => x.IsValid() && x.LifeState == LifeState.Alive && x.Team is not Spectator );
+				var AlivePlayer = Entity.All.OfType<MiniGamesPlayer>().Where( x => x.IsValid() && x.LifeState == LifeState.Alive && x.Team is not Spectator );
 
 				if ( AlivePlayer.Count() == 0 )
 				{

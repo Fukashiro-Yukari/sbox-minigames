@@ -14,18 +14,18 @@ namespace Round
 		{
 			if ( !Host.IsServer ) return;
 
-			var game = Game.Current as MiniGame;
+			var game = Game.Current as MiniGames;
 
 			game.SetRoundTime( Config.EndTime );
 			game.NumRounds--;
 
 			if ( winner == null )
 			{
-				MiniGame.AddHint( "Draw" );
+				MiniGames.AddHint( "Draw" );
 			}
-			else if ( MapSettings.TeamType == 1 && winner is MiniGamePlayer ply )
+			else if ( MapSettings.TeamType == 1 && winner is MiniGamesPlayer ply )
 			{
-				MiniGame.AddHint( $"Winner {ply.Client.Name}" );
+				MiniGames.AddHint( $"Winner {ply.Client.Name}" );
 
 				//winner: AddFrags( 1 )
 			}
@@ -33,13 +33,13 @@ namespace Round
 			{
 				if ( team is Red )
 				{
-					MiniGame.AddHint( "Red Team Won" );
+					MiniGames.AddHint( "Red Team Won" );
 
 					game.TeamRed.AddScore();
 				}
 				else if ( team is Blue )
 				{
-					MiniGame.AddHint( "Blue Team Won" );
+					MiniGames.AddHint( "Blue Team Won" );
 
 					game.TeamBlue.AddScore();
 				}

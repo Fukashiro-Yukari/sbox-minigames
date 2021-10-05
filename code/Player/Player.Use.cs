@@ -2,7 +2,7 @@
 using Sandbox.Component;
 using System.Linq;
 
-partial class MiniGamePlayer
+partial class MiniGamesPlayer
 {
 	public bool IsUseDisabled()
 	{

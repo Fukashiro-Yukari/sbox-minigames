@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-partial class MiniGamePlayer : Player
+partial class MiniGamesPlayer : Player
 {
 	private TimeSince timeSinceDropped;
 	private TimeSince timeSinceFall;
@@ -33,15 +33,15 @@ partial class MiniGamePlayer : Player
 	[Net, Local, Predicted]
 	private bool LightEnabled { get; set; } = false;
 
-	MiniGame game;
+	MiniGames game;
 
-	public MiniGamePlayer()
+	public MiniGamesPlayer()
 	{
 		Inventory = new Inventory( this );
-		game = (Game.Current as MiniGame);
+		game = (Game.Current as MiniGames);
 	}
 
-	public MiniGamePlayer( Client cl ) : this()
+	public MiniGamesPlayer( Client cl ) : this()
 	{
 		// Load clothing from client data
 		Clothing.LoadFromClient( cl );
@@ -81,11 +81,9 @@ partial class MiniGamePlayer : Player
 			InitSpawn = false;
 
 			Clothing.DressEntity( this );
-
-			
 		}
 
-		Controller = new MiniGameWalkController();
+		Controller = new MiniGamesWalkController();
 
 		if ( DevController is NoclipController )
 		{
@@ -217,7 +215,7 @@ partial class MiniGamePlayer : Player
 		if ( Team != null & Team is Spectator ) return;
 		if ( MapSettings.God || (MapSettings.TempGod > 0 && timeSinceTempGod < MapSettings.TempGod) ) return;
 		if ( !MapSettings.PlayersDamage ) return;
-		if ( !MapSettings.TeamDamage && info.Attacker != null && info.Attacker is MiniGamePlayer ply && ply.Team == Team && ply != this ) return;
+		if ( !MapSettings.TeamDamage && info.Attacker != null && info.Attacker is MiniGamesPlayer ply && ply.Team == Team && ply != this ) return;
 		if ( GetHitboxGroup( info.HitboxIndex ) == 1 )
 		{
 			info.Damage *= 2.0f;
@@ -229,14 +227,14 @@ partial class MiniGamePlayer : Player
 
 		base.TakeDamage( info );
 
-		//Log.Info( info.Attacker is MiniGamePlayer attacker && attacker != this );
+		//Log.Info( info.Attacker is MiniGamesPlayer attacker && attacker != this );
 
-		if ( info.Attacker != null && (info.Attacker is MiniGamePlayer || info.Attacker.Owner is MiniGamePlayer) )
+		if ( info.Attacker != null && (info.Attacker is MiniGamesPlayer || info.Attacker.Owner is MiniGamesPlayer) )
 		{
-			MiniGamePlayer attacker = info.Attacker as MiniGamePlayer;
+			MiniGamesPlayer attacker = info.Attacker as MiniGamesPlayer;
 
 			if ( attacker == null )
-				attacker = info.Attacker.Owner as MiniGamePlayer;
+				attacker = info.Attacker.Owner as MiniGamesPlayer;
 
 			// Note - sending this only to the attacker!
 			if ( attacker != this )
@@ -327,9 +325,22 @@ partial class MiniGamePlayer : Player
 			{
 				if ( timeSinceDied > 3 )
 				{
-					game.TeamSpectator.Join( this );
-
 					Respawn();
+
+					Controller = new NoclipController();
+					EnableAllCollisions = false;
+					EnableDrawing = false;
+
+					foreach ( var child in Children )
+					{
+						if ( !child.Tags.Has( "clothes" ) ) continue;
+						if ( child is not ModelEntity e ) continue;
+
+						e.EnableAllCollisions = false;
+						e.EnableDrawing = false;
+					}
+
+					ToggleFlashlight( false );
 				}
 
 				return;

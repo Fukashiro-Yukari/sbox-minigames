@@ -236,13 +236,13 @@ public partial class Weapon : Carriable, IUse
 			BurstsMode = !BurstsMode;
 
 			if ( BurstsMode )
-				MiniGame.AddHint( "Switched to burst-fire mode" );
+				MiniGames.AddHint( "Switched to burst-fire mode" );
 			else
 			{
 				if ( Automatic )
-					MiniGame.AddHint( "Switched to automatic" );
+					MiniGames.AddHint( "Switched to automatic" );
 				else
-					MiniGame.AddHint( "Switched to semi-automatic" );
+					MiniGames.AddHint( "Switched to semi-automatic" );
 			}
 		}
 
@@ -491,7 +491,7 @@ public partial class Weapon : Carriable, IUse
 					dropped.PhysicsGroup.ApplyImpulse( user.Velocity + user.EyeRot.Forward * 80.0f + Vector3.Up * 100.0f, true );
 					dropped.PhysicsGroup.ApplyAngularImpulse( Vector3.Random * 100.0f, true );
 
-					if ( user is MiniGamePlayer ply )
+					if ( user is MiniGamesPlayer ply )
 						ply.ResetDroppedTime();
 				}
 

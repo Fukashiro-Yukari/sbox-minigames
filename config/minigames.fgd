@@ -21,7 +21,7 @@ metadata
 {
 	entity_tool_name = "Map Settings"
 	entity_tool_group = "Map"
-	entity_tool_tip = "Change map settings for minigames"
+	entity_tool_tip = "Change map settings for MiniGames"
 }
 = info_map_settings : ""
 [

@@ -19,7 +19,7 @@ public partial class Speedometer : Panel
 
 		Speed.Text = $"{ply.Velocity.Length.CeilToInt()} Vel";
 
-		if ( ply is MiniGamePlayer mply && mply.Team != null )
+		if ( ply is MiniGamesPlayer mply && mply.Team != null )
 		{
 			var color = mply.Team.Color.ToColor();
 

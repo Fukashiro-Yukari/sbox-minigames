@@ -15,7 +15,7 @@ public partial class BaseTeam : BaseNetworkable
 
 	public virtual void Join( Player ply )
 	{
-		if ( ply is MiniGamePlayer p )
+		if ( ply is MiniGamesPlayer p )
 		{
 			if ( p.Team != null )
 				p.Team.Exit( p );
@@ -31,7 +31,7 @@ public partial class BaseTeam : BaseNetworkable
 	{
 		Players.Remove( ply );
 
-		if ( ply is MiniGamePlayer p )
+		if ( ply is MiniGamesPlayer p )
 			p.Team = null;
 	}
 
@@ -39,7 +39,7 @@ public partial class BaseTeam : BaseNetworkable
 	{
 		foreach ( var ply in Players )
 		{
-			if ( ply is MiniGamePlayer p )
+			if ( ply is MiniGamesPlayer p )
 				p.Team = null;
 		}
 

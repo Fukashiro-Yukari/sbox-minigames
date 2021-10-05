@@ -12,7 +12,7 @@ public class CarController : PawnController
 
 	public override void Simulate()
 	{
-		var player = Pawn as MiniGamePlayer;
+		var player = Pawn as MiniGamesPlayer;
 		if ( !player.IsValid() ) return;
 
 		var car = player.Vehicle as CarEntity;

@@ -23,7 +23,7 @@ public partial class Gamestate : Panel
 
 	public override void Tick()
 	{
-		var game = Game.Current as MiniGame;
+		var game = Game.Current as MiniGames;
 
 		RedScore.Text = game.TeamRedScore.ToString();
 		BlueScore.Text = game.TeamBlueScore.ToString();
@@ -36,7 +36,7 @@ public partial class Gamestate : Panel
 			Timer.Text = string.Format( "{0:00}:{1:00}", ts.Minutes, ts.Seconds );
 
 		if ( game.Round is Round.Preparing ) Rounds.Text = "Preparing";
-		else if ( game.Round is Round.Waiting ) Rounds.Text = $"Waiting ( {Entity.All.OfType<MiniGamePlayer>().Count()} / 2 )";
+		else if ( game.Round is Round.Waiting ) Rounds.Text = $"Waiting ( {Entity.All.OfType<MiniGamesPlayer>().Count()} / 2 )";
 		else Rounds.Text = $"Round {game.NumRounds}";
 	}
 }

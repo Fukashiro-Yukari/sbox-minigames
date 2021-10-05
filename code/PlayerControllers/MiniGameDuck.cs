@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace Sandbox
 {
 	[Library]
-	public class MiniGameDuck : BaseNetworkable
+	public class MiniGamesDuck : BaseNetworkable
 	{
-		public MiniGameWalkController Controller;
+		public MiniGamesWalkController Controller;
 
 		public bool IsActive; // replicate
 
-		public MiniGameDuck( MiniGameWalkController controller )
+		public MiniGamesDuck( MiniGamesWalkController controller )
 		{
 			Controller = controller;
 		}
@@ -40,7 +40,7 @@ namespace Sandbox
 
 		protected virtual void TryDuck()
 		{
-			if ( Controller.Swimming || (Controller.Pawn is MiniGamePlayer ply && ply.IsFreeze) ) return;
+			if ( Controller.Swimming || (Controller.Pawn is MiniGamesPlayer ply && ply.IsFreeze) ) return;
 
 			IsActive = true;
 		}

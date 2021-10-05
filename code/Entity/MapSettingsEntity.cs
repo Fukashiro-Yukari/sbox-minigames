@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 [Library( "info_map_settings" )]
 //[Hammer.EditorModel( "models/editor/playerstart.vmdl", FixedBounds = true )]
-[Hammer.EntityTool( "Map Settings", "Map", "Change map settings for minigames" )]
+[Hammer.EntityTool( "Map Settings", "Map", "Change map settings for MiniGames" )]
 public class MapSettingsEntity : Entity
 {
 	[Property( Title = "Players God Mode" )]

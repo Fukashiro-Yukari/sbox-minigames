@@ -16,7 +16,7 @@ partial class Inventory : BaseInventory
 		if ( !base.CanAdd( entity ) )
 			return false;
 
-		if ( Owner is MiniGamePlayer ply && ply.Team is Spectator )
+		if ( Owner is MiniGamesPlayer ply && ply.Team is Spectator )
 			return false;
 
 		if ( entity is Weapon weapon )
@@ -111,7 +111,7 @@ partial class Inventory : BaseInventory
 		if ( !entity.IsValid() )
 			return false;
 
-		var player = Owner as MiniGamePlayer;
+		var player = Owner as MiniGamesPlayer;
 		var notices = !player.SupressPickupNotices;
 
 		if ( IsCarryingType( entity.GetType() ) ) return false;

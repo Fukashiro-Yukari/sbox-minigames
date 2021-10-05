@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-partial class MiniGame : Game
+partial class MiniGames : Game
 {
 	[Net, Predicted] public BaseTeam TeamRed { get; set; }
 	[Net, Predicted] public BaseTeam TeamBlue { get; set; }
@@ -18,7 +18,7 @@ partial class MiniGame : Game
 
 	public string NextMap;
 
-	public MiniGame()
+	public MiniGames()
 	{
 		if ( IsServer )
 		{
@@ -28,7 +28,7 @@ partial class MiniGame : Game
 			Round = new Round.Preparing();
 			NumRounds = MapSettings.NumRounds;
 
-			_ = new MiniGameHud();
+			_ = new MiniGamesHud();
 		}
 	}
 
@@ -53,7 +53,7 @@ partial class MiniGame : Game
 		if ( Round == null ) return;
 		if ( !(Round is Round.Waiting) && !(Round is Round.Preparing) )
 		{
-			var plys = All.OfType<MiniGamePlayer>();
+			var plys = All.OfType<MiniGamesPlayer>();
 
 			if ( plys.Count() < 2 )
 			{
@@ -83,7 +83,7 @@ partial class MiniGame : Game
 	public override void ClientJoined( Client cl )
 	{
 		base.ClientJoined( cl );
-		var player = new MiniGamePlayer( cl );
+		var player = new MiniGamesPlayer( cl );
 
 		if ((Round is Round.Freeze || MapSettings.Respawn ) && !(Round is Round.Waiting) && !(Round is Round.Preparing) )
 		{
@@ -155,14 +155,14 @@ partial class MiniGame : Game
 	public override void DoPlayerNoclip( Client player )
 	{
 		if ( ConsoleSystem.GetValue( "sv_cheats" ) == "0" ) return;
-		if ( player.Pawn is MiniGamePlayer ply && ply.Team is Spectator ) return;
+		if ( player.Pawn is MiniGamesPlayer ply && ply.Team is Spectator ) return;
 
 		base.DoPlayerNoclip( player );
 	}
 
 	public override void DoPlayerSuicide( Client cl )
 	{
-		if ( cl.Pawn is MiniGamePlayer ply && ply.Team is Spectator ) return;
+		if ( cl.Pawn is MiniGamesPlayer ply && ply.Team is Spectator ) return;
 
 		base.DoPlayerSuicide( cl );
 	}
@@ -176,7 +176,7 @@ partial class MiniGame : Game
 
 	public override void MoveToSpawnpoint( Entity pawn )
 	{
-		if ( pawn is MiniGamePlayer ply )
+		if ( pawn is MiniGamesPlayer ply )
 		{
 			Entity spawnpoint;
 
@@ -228,7 +228,7 @@ partial class MiniGame : Game
 
 		Log.Info( $"{client.Name} was killed" );
 
-		if ( pawn is MiniGamePlayer ply )
+		if ( pawn is MiniGamesPlayer ply )
 			isHeadShot = ply.IsHeadShot;
 
 		if ( pawn.LastAttacker != null )

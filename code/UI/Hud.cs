@@ -2,9 +2,9 @@
 using Sandbox.UI;
 
 [Library]
-public partial class MiniGameHud : HudEntity<RootPanel>
+public partial class MiniGamesHud : HudEntity<RootPanel>
 {
-	public MiniGameHud()
+	public MiniGamesHud()
 	{
 		if ( !IsClient )
 			return;
@@ -18,7 +18,7 @@ public partial class MiniGameHud : HudEntity<RootPanel>
 		RootPanel.AddChild<InventoryBar>();
         RootPanel.AddChild<DamageIndicator>();
 		RootPanel.AddChild<HitIndicator>();
-		RootPanel.AddChild<MiniGameNameTags>();
+		RootPanel.AddChild<MiniGamesNameTags>();
 		RootPanel.AddChild<CrosshairCanvas>();
 		RootPanel.AddChild<ChatBox>();
 		RootPanel.AddChild<VoiceList>();

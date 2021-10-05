@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Sandbox
 {
 	[Library]
-	public class MiniGameWalkController : BasePlayerController
+	public class MiniGamesWalkController : BasePlayerController
 	{
 		public float SprintSpeed { get; set; } = 320.0f;
 		public float WalkSpeed { get; set; } = 150.0f;
@@ -36,12 +36,12 @@ namespace Sandbox
 		public bool Swimming { get; set; } = false;
 		public bool AutoJump { get; set; } = true;
 
-		public MiniGameDuck Duck;
+		public MiniGamesDuck Duck;
 		public Unstuck Unstuck;
 
-		public MiniGameWalkController()
+		public MiniGamesWalkController()
 		{
-			Duck = new MiniGameDuck( this );
+			Duck = new MiniGamesDuck( this );
 			Unstuck = new Unstuck( this );
 			Gravity = MapSettings.Gravity;
 		}
@@ -160,7 +160,7 @@ namespace Sandbox
 
 			// if ( underwater ) do underwater movement
 
-			if ( Pawn is MiniGamePlayer ply && !ply.IsFreeze && ((AutoJump || Swimming) ? Input.Down( InputButton.Jump ) : Input.Pressed( InputButton.Jump )) )
+			if ( Pawn is MiniGamesPlayer ply && !ply.IsFreeze && ((AutoJump || Swimming) ? Input.Down( InputButton.Jump ) : Input.Pressed( InputButton.Jump )) )
 			{
 				CheckJumpButton();
 			}
@@ -260,7 +260,7 @@ namespace Sandbox
 
 		public virtual float GetWishSpeed()
 		{
-			if ( Pawn is MiniGamePlayer ply && ply.IsFreeze ) return 0f;
+			if ( Pawn is MiniGamesPlayer ply && ply.IsFreeze ) return 0f;
 
 			var ws = Duck.GetWishSpeed();
 			if ( ws >= 0 ) return ws;

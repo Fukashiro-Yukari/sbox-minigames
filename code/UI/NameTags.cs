@@ -8,14 +8,14 @@ using System.Runtime.InteropServices;
 
 namespace Sandbox.UI
 {
-	public class BaseMiniGameNameTag : Panel
+	public class BaseMiniGamesNameTag : Panel
 	{
 		public Label NameLabel;
 		public Image Avatar;
 
 		Player player;
 
-		public BaseMiniGameNameTag( Player player )
+		public BaseMiniGamesNameTag( Player player )
 		{
 			this.player = player;
 
@@ -27,7 +27,7 @@ namespace Sandbox.UI
 
 		public virtual void UpdateFromPlayer( Player player )
 		{
-			if (player is MiniGamePlayer ply && ply.Team != null )
+			if (player is MiniGamesPlayer ply && ply.Team != null )
 			{
 				var color = ply.Team.Color.ToColor();
 
@@ -37,14 +37,14 @@ namespace Sandbox.UI
 		}
 	}
 
-	public class MiniGameNameTags : Panel
+	public class MiniGamesNameTags : Panel
 	{
-		Dictionary<Player, BaseMiniGameNameTag> ActiveTags = new();
+		Dictionary<Player, BaseMiniGamesNameTag> ActiveTags = new();
 
 		public float MaxDrawDistance = 400;
 		public int MaxTagsToShow = 5;
 
-		public MiniGameNameTags()
+		public MiniGamesNameTags()
 		{
 			StyleSheet.Load( "/UI/NameTags.scss" );
 		}
@@ -77,12 +77,12 @@ namespace Sandbox.UI
 
 		}
 
-		public virtual BaseMiniGameNameTag CreateNameTag( Player player )
+		public virtual BaseMiniGamesNameTag CreateNameTag( Player player )
 		{
 			if ( player.Client == null )
 				return null;
 
-			var tag = new BaseMiniGameNameTag( player );
+			var tag = new BaseMiniGamesNameTag( player );
 			tag.Parent = this;
 			return tag;
 		}
@@ -96,7 +96,7 @@ namespace Sandbox.UI
 			if ( player.LifeState != LifeState.Alive )
 				return false;
 
-			if ( player is MiniGamePlayer ply && ply.Team is Spectator )
+			if ( player is MiniGamesPlayer ply && ply.Team is Spectator )
 				return false;
 
 			//

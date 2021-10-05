@@ -39,7 +39,7 @@ public partial class InventoryBar : Panel
 	[Event.BuildInput]
 	public void ProcessClientInput( InputBuilder input )
 	{
-		var ply = Local.Pawn as MiniGamePlayer;
+		var ply = Local.Pawn as MiniGamesPlayer;
 
 		if ( Weapons.Count == 0 || ply == null || ply.LifeState == LifeState.Dead )
 		{

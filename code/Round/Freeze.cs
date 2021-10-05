@@ -11,7 +11,7 @@ namespace Round
 		{
 			if ( !Host.IsServer ) return;
 
-			var game = Game.Current as MiniGame;
+			var game = Game.Current as MiniGames;
 
 			if ( !string.IsNullOrEmpty( game.NextMap ) )
 			{
@@ -21,7 +21,7 @@ namespace Round
 
 			game.CleanUpMap();
 
-			var players = Entity.All.OfType<MiniGamePlayer>();
+			var players = Entity.All.OfType<MiniGamesPlayer>();
 
 			game.SetRoundTime( Config.FreezeTime );
 			game.TeamRed.Clear();
@@ -40,7 +40,7 @@ namespace Round
 			}
 			else
 			{
-				List<MiniGamePlayer> PlayerTbl = new();
+				List<MiniGamesPlayer> PlayerTbl = new();
 				int NeedPly;
 
 				if ( MapSettings.TeamType == 2 )
@@ -56,7 +56,7 @@ namespace Round
 				for ( int i = 0; i < NeedPly; i++ )
 				{
 					var find = true;
-					MiniGamePlayer rand = null;
+					MiniGamesPlayer rand = null;
 
 					while ( find )
 					{

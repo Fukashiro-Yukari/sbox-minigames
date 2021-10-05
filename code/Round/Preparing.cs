@@ -8,7 +8,7 @@ namespace Round
 		{
 			if ( !Host.IsServer ) return;
 
-			(Game.Current as MiniGame).SetRoundTime( Config.PreparationTime );
+			(Game.Current as MiniGames).SetRoundTime( Config.PreparationTime );
 		}
 	}
 }

@@ -39,7 +39,7 @@ public partial class Health : Panel
         HealthBar.Style.Width = Length.Percent(ply.Health);
 		HealthBar.Style.Dirty();
 
-		if (ply is MiniGamePlayer mply && mply.Team != null )
+		if (ply is MiniGamesPlayer mply && mply.Team != null )
 		{
 			var color = mply.Team.Color.ToColor();
 
