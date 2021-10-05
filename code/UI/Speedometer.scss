@@ -1,0 +1,20 @@
+Speedometer
+{
+    position: absolute;
+    left: 100px;
+	right: 100px;
+    bottom: 10px;
+    justify-content: center;
+	align-items: center;
+
+    .SpeedText
+    {
+        background-color: rgba( black, 0.5 );
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 4px 4px 10px rgba( black, 0.3 );
+        color: white;
+    }
+}

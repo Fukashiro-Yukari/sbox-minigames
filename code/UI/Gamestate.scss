@@ -1,0 +1,50 @@
+Gamestate
+{
+    position: absolute;
+    left: 100px;
+	right: 100px;
+    top: 10px;
+    justify-content: center;
+	align-items: center;
+    flex-direction: column;
+
+    .Round
+    {
+        margin-top: 5px;
+        background-color: rgba( black, 0.5 );
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-shadow: 4px 4px 10px rgba( black, 0.3 );
+        color: white;
+    }
+
+    .TimerBG
+    {
+        font-size: 25px;
+        font-weight: bold;
+        text-shadow: 4px 4px 10px rgba( black, 0.3 );
+        color: white;
+
+        .Red
+        {
+            background-color: rgba( rgb(200, 0, 0), 0.5 );
+            border-radius: 20px 0 0 20px;
+            padding: 10px;
+        }
+
+        .Timer
+        {
+            background-color: rgba( black, 0.5 );
+            padding: 10px;
+        }
+
+        .Blue
+        {
+            background-color: rgba( rgb(0, 0, 200), 0.5 );
+            border-radius: 0 20px 20px 0;
+            padding: 10px;
+        }
+    }
+}
