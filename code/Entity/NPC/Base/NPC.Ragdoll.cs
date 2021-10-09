@@ -70,8 +70,6 @@ public partial class NPC
 
 		Corpse = ent;
 
-		Undo.ReplaceEntity( this, Corpse );
-
 		ent.DeleteAsync( 10.0f );
 	}
 }
