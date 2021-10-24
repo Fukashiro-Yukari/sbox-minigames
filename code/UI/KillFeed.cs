@@ -4,24 +4,20 @@ using System;
 
 public partial class KillFeed : Sandbox.UI.KillFeed
 {
-	private bool GetIcon(string method, KillFeedEntry e)
-    {
+	private bool GetIcon( string method, KillFeedEntry e )
+	{
 		try
 		{
-			if (method != null && method.StartsWith("mg_"))
+			if ( method != null && method.StartsWith( "mg_" ) )
 			{
-				var killWeapon = Library.Create<Entity>(method);
+				var killWeapon = Library.Create<Entity>( method );
 
-				Weapon wep = killWeapon as Weapon;
-
-				if (wep != null)
+				if ( killWeapon is Carriable car )
 				{
-					if (!string.IsNullOrEmpty(wep.Icon))
+					if ( !string.IsNullOrEmpty( car.Icon ) )
 					{
-						var panelBackground = new PanelBackground();
-						panelBackground.Texture = Texture.Load(wep.Icon);
-						e.Icon.Style.Background = panelBackground;
-						e.Icon.SetClass("close", false);
+						e.Icon.Style.BackgroundImage = Texture.Load( car.Icon );
+						e.Icon.SetClass( "close", false );
 						killWeapon.Delete();
 
 						return true;
@@ -29,10 +25,10 @@ public partial class KillFeed : Sandbox.UI.KillFeed
 				}
 			}
 		}
-		catch (Exception) { }
+		catch ( Exception ) { }
 
 		return false;
-    }
+	}
 
 	public virtual Panel AddEntry( ulong lsteamid, string left, ulong rsteamid, string right, string method, bool isHeadShot = false )
 	{
@@ -49,9 +45,7 @@ public partial class KillFeed : Sandbox.UI.KillFeed
 			e.Icon.SetClass( "close", true );
 		}
 
-		var panelBackground = new PanelBackground();
-		panelBackground.Texture = Texture.Load( "ui/headshot.png" );
-		e.HeadShotIcon.Style.Background = panelBackground;
+		e.HeadShotIcon.Style.BackgroundImage = Texture.Load( "ui/headshot.png" );
 		e.HeadShotIcon.SetClass( "close", !isHeadShot );
 
 		e.Right.Text = right;
@@ -60,59 +54,59 @@ public partial class KillFeed : Sandbox.UI.KillFeed
 		return e;
 	}
 
-	public virtual Panel AddEntry(string left, ulong rsteamid, string right, string method)
+	public virtual Panel AddEntry( string left, ulong rsteamid, string right, string method )
 	{
 		var e = Current.AddChild<KillFeedEntry>();
 
 		e.Left.Text = left;
-		e.Left.SetClass("me", false);
+		e.Left.SetClass( "me", false );
 
-		if (!GetIcon(method, e))
+		if ( !GetIcon( method, e ) )
 		{
 			e.Method.Text = method;
-			e.Icon.SetClass("close", true);
+			e.Icon.SetClass( "close", true );
 		}
 
 		e.Right.Text = right;
-		e.Right.SetClass("me", rsteamid == (Local.Client?.SteamId));
+		e.Right.SetClass( "me", rsteamid == (Local.Client?.SteamId) );
 
 		return e;
 	}
 
-	public virtual Panel AddEntry(ulong lsteamid, string left, string right, string method)
+	public virtual Panel AddEntry( ulong lsteamid, string left, string right, string method )
 	{
 		var e = Current.AddChild<KillFeedEntry>();
 
 		e.Left.Text = left;
-		e.Left.SetClass("me", lsteamid == (Local.Client?.SteamId));
+		e.Left.SetClass( "me", lsteamid == (Local.Client?.SteamId) );
 
-		if (!GetIcon(method, e))
+		if ( !GetIcon( method, e ) )
 		{
 			e.Method.Text = method;
-			e.Icon.SetClass("close", true);
+			e.Icon.SetClass( "close", true );
 		}
 
 		e.Right.Text = right;
-		e.Right.SetClass("me", false);
+		e.Right.SetClass( "me", false );
 
 		return e;
 	}
 
-	public virtual Panel AddEntry(string left, string right, string method)
+	public virtual Panel AddEntry( string left, string right, string method )
 	{
 		var e = Current.AddChild<KillFeedEntry>();
 
 		e.Left.Text = left;
-		e.Left.SetClass("me", false);
+		e.Left.SetClass( "me", false );
 
-		if (!GetIcon(method, e))
+		if ( !GetIcon( method, e ) )
 		{
 			e.Method.Text = method;
-			e.Icon.SetClass("close", true);
+			e.Icon.SetClass( "close", true );
 		}
 
 		e.Right.Text = right;
-		e.Right.SetClass("me", false);
+		e.Right.SetClass( "me", false );
 
 		return e;
 	}

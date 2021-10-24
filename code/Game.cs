@@ -132,7 +132,7 @@ partial class MiniGames : Game
 
 	}
 
-	[ServerCmd("give_weapon")]
+	[AdminCmd("give_weapon")]
 	public static void GiveWeapon( string entName )
 	{
 		if ( ConsoleSystem.GetValue( "sv_cheats" ) == "0" ) return;
@@ -316,6 +316,13 @@ partial class MiniGames : Game
 		if ( Host.IsClient ) return;
 
 		AddHintMessage( text );
+	}
+
+	public static void AddHint( To to, string text )
+	{
+		if ( Host.IsClient ) return;
+
+		AddHintMessage( to, text );
 	}
 
 	[ClientRpc]

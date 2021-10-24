@@ -236,13 +236,13 @@ public partial class Weapon : Carriable, IUse
 			BurstsMode = !BurstsMode;
 
 			if ( BurstsMode )
-				MiniGames.AddHint( "Switched to burst-fire mode" );
+				MiniGames.AddHint( To.Single( Owner ), "Switched to burst-fire mode" );
 			else
 			{
 				if ( Automatic )
-					MiniGames.AddHint( "Switched to automatic" );
+					MiniGames.AddHint( To.Single( Owner ), "Switched to automatic" );
 				else
-					MiniGames.AddHint( "Switched to semi-automatic" );
+					MiniGames.AddHint( To.Single( Owner ), "Switched to semi-automatic" );
 			}
 		}
 
