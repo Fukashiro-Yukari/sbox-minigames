@@ -31,9 +31,9 @@ metadata
 	respawn(boolean) : "Players Can Respawn" : 0 : ""
 	time(float) : "Round Time" : 600 : ""
 	playerscale(float) : "Round Time" : 1 : ""
-	runspeed(float) : "Players Running Speed" : 300 : ""
-	walkspeed(float) : "Players Walk Speed" : 150 : ""
-	jumppower(float) : "Players Jump Power" : 268.32816 : ""
+	runspeed(float) : "Players Running Speed" : "300" : ""
+	walkspeed(float) : "Players Walk Speed" : "150" : ""
+	jumppower(float) : "Players Jump Power" : "268.32816" : ""
 	allowflashlight(boolean) : "Players Allow Use Flashlight" : 1 : ""
 	startweapon(string) : "Players Start Weapon" : "" : ""
 	infiniteammo(boolean) : "Players Infinite Ammo" : 0 : ""
@@ -42,11 +42,10 @@ metadata
 	playersdamage(boolean) : "Players Can Take Damage" : 1 : ""
 	falldamage(boolean) : "Players Fall Damage" : 1 : ""
 	dropafterdeath(boolean) : "Players Drop Weapons After Death" : 1 : ""
-	gravity(float) : "Game Gravity" : 800 : ""
+	gravity(float) : "Game Gravity" : "800" : ""
 	tempgod(float) : "Players God Mode Time" : 3 : ""
 	numrounds(integer) : "Game Rounds" : 15 : ""
 	cantdrop(array:string) : "Players Can't Drop Weapons" :  : ""
-	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
 ]
 
 //
@@ -327,6 +326,7 @@ metadata
 		5 : "COLLISION GROUP DEBRIS"
 		14 : "COLLISION GROUP WEAPON"
 	]
+	static(boolean) : "Static" : 0 : "If set, the prop will spawn with motion disabled and will act as a nav blocker until broken."
 	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
 
 	input Break(void) : "Causes this prop to break, regardless if it is actually breakable or not. (i.e. ignores health and whether the model has gibs)"
@@ -348,7 +348,6 @@ metadata
 }
 = info_player_blue : "This entity defines the spawn point of the player in first person shooter gamemodes."
 [
-	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
 ]
 
 //
@@ -363,6 +362,5 @@ metadata
 }
 = info_player_red : "This entity defines the spawn point of the player in first person shooter gamemodes."
 [
-	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
 ]
 

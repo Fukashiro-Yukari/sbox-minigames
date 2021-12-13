@@ -49,7 +49,7 @@ public class CarCamera : Camera
 		carPitch = 0;
 		firstPerson = false;
 
-		var car = (pawn as SandboxPlayer)?.Vehicle as CarEntity;
+		var car = (pawn as MiniGamesPlayer)?.Vehicle as CarEntity;
 		if ( !car.IsValid() ) return;
 
 		orbitYawRot = firstPerson ? Rotation.Identity : Rotation.FromYaw( car.Rotation.Yaw() );
@@ -62,7 +62,7 @@ public class CarCamera : Camera
 		var pawn = Local.Pawn;
 		if ( pawn == null ) return;
 
-		var car = (pawn as SandboxPlayer)?.Vehicle as CarEntity;
+		var car = (pawn as MiniGamesPlayer)?.Vehicle as CarEntity;
 		if ( !car.IsValid() ) return;
 
 		var body = car.PhysicsBody;
@@ -163,7 +163,7 @@ public class CarCamera : Camera
 		var pawn = Local.Pawn;
 		if ( pawn == null ) return;
 
-		var car = (pawn as SandboxPlayer)?.Vehicle as CarEntity;
+		var car = (pawn as MiniGamesPlayer)?.Vehicle as CarEntity;
 		if ( !car.IsValid() ) return;
 
 		if ( input.Pressed( InputButton.View ) )
