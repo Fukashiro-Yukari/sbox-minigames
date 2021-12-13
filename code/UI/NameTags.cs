@@ -22,7 +22,7 @@ namespace Sandbox.UI
 			var client = player.Client;
 
 			NameLabel = Add.Label( $"{client.Name}" );
-			Avatar = Add.Image( $"avatar:{client.SteamId}" );
+			Avatar = Add.Image( $"avatar:{client.PlayerId}" );
 		}
 
 		public virtual void UpdateFromPlayer( Player player )
